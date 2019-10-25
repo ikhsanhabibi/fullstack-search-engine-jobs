@@ -1,0 +1,21 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <td>Title</td>
+      <td>Company</td>
+      <td>City</td>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let job of jobs">
+      <td>{{ job.Title }}</td>
+      <td>{{ job.Company }}</td>
+      <td>{{ job.City }}</td>
+      <td>
+        <a [routerLink]="['/edit', job._id]" class="btn btn-primary">Edit</a>
+      </td>
+      <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>
+    </tr>
+  </tbody>
+</table>
