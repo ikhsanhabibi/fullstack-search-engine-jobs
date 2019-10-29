@@ -10,35 +10,11 @@ export class JobsService {
 
   constructor(private http: HttpClient) {}
 
-  addJob(
-    Title,
-    Company,
-    City,
-    Country,
-    Internship,
-    Fulltime,
-    Parttime,
-    Summary,
-    Email,
-    Website,
-    Source,
-    PostedDate,
-    ScrapeDate
-  ) {
+  addJob(Title, Company, City) {
     const obj = {
       Title,
       Company,
-      City,
-      Country,
-      Internship,
-      Fulltime,
-      Parttime,
-      Summary,
-      Email,
-      Website,
-      Source,
-      PostedDate,
-      ScrapeDate
+      City
     };
     console.log(obj);
     this.http
@@ -48,5 +24,15 @@ export class JobsService {
 
   getJobs() {
     return this.http.get(`${this.uri}`);
+  }
+
+  deleteJob(id) {
+    console.log("delete coy");
+    return this.http.get(`${this.uri}/delete/${id}`);
+  }
+
+  deleteJobs() {
+    console.log("deleteJobs() method excuted");
+    return this.http.get(`${this.uri}/deleteAll`);
   }
 }

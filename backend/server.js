@@ -9,15 +9,18 @@ const express = require("express"),
 
 const jobRoute = require("./routes/job.route");
 
+// Mongoose
 mongoose.Promise = global.Promise;
-mongoose.connect(config.DB, { useNewUrlParser: true }).then(
-  () => {
-    console.log("Database is connected");
-  },
-  err => {
-    console.log("Can not connect to the database" + err);
-  }
-);
+mongoose.connect(config.DB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function() {
+  console.log("we're connected!");
+});
 
 const app = express();
 app.use(bodyParser.json());

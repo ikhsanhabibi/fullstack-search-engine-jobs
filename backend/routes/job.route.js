@@ -41,7 +41,7 @@ jobRoutes.route("/edit/:id").get(function(req, res) {
 
 //  Defined update route
 jobRoutes.route("/update/:id").post(function(req, res) {
-  Job.findById(req.params.id, function(err, job) {
+  Job.updateOne(req.params.id, function(err, job) {
     if (!job) res.status(404).send("Record not found");
     else {
       job.Title = req.body.Title;
@@ -72,9 +72,20 @@ jobRoutes.route("/update/:id").post(function(req, res) {
 
 // Defined delete | remove | destroy route
 jobRoutes.route("/delete/:id").get(function(req, res) {
-  Job.findByIdAndRemove({ _id: req.params.id }, function(err, job) {
+  Job.deleteOne({ _id: req.params.id }, function(err, job) {
     if (err) res.json(err);
-    else res.json("Successfully removed");
+    else {
+      res.json("Successfully removed");
+    }
+  });
+});
+
+jobRoutes.route("/deleteAll").get(function(req, res) {
+  Job.deleteMany({}, function(err, obj) {
+    if (err) res.json(err);
+    else {
+      res.json("Successfully removed");
+    }
   });
 });
 

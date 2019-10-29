@@ -1,21 +1,44 @@
+<td><a (click)="deleteJobs()" class="btn btn-danger">Delete</a></td>
 <table class="table table-hover">
   <thead>
     <tr>
       <td>Title</td>
       <td>Company</td>
       <td>City</td>
+      <td>Country</td>
+      <td>Internship</td>
+      <td>Full Time</td>
+      <td>Part Time</td>
+      <td>Posted Date</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </thead>
 
   <tbody>
     <tr *ngFor="let job of jobs">
-      <td>{{ job.Title }}</td>
+      <td>
+        <a href="{{ job.Website }}">{{ job.Title }}</a>
+      </td>
       <td>{{ job.Company }}</td>
       <td>{{ job.City }}</td>
+      <td>{{ job.Country }}</td>
+      <td>{{ job.Internship }}</td>
+      <td>{{ job.Fulltime }}</td>
+      <td>{{ job.Parttime }}</td>
+      <td>{{ job.PostedDate }}</td>
+      <td></td>
       <td>
-        <a [routerLink]="['/edit', job._id]" class="btn btn-primary">Edit</a>
+        <a [routerLink]="['/edit', job._id]" class="btn btn-primary btn-sm"
+          >Edit</a
+        >
       </td>
-      <td><a [routerLink]="" class="btn btn-danger">Delete</a></td>
+      <td>
+        <button (click)="deleteJob(job._id)" class="btn btn-danger btn-sm">
+          Delete
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

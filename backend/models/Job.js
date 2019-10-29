@@ -12,6 +12,9 @@ let Job = new Schema(
     Company: {
       type: String
     },
+    City: {
+      type: String
+    },
     Country: {
       type: String
     },

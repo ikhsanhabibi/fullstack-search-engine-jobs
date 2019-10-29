@@ -17,7 +17,8 @@ const routes: Routes = [
   {
     path: "jobs",
     component: JobGetComponent
-  }
+  },
+  { path: "deleteAll", component: JobGetComponent }
 ];
 
 @NgModule({

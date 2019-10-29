@@ -18,50 +18,15 @@ export class JobAddComponent implements OnInit {
     this.angForm = this.fb.group({
       Title: ["", Validators.required],
       Company: ["", Validators.required],
-      City: ["", Validators.required],
-      Country: ["", Validators.required],
-      Internship: ["", Validators.required],
-      Fulltime: ["", Validators.required],
-      Parttime: ["", Validators.required],
-      Summary: ["", Validators.required],
-      Email: ["", Validators.required],
-      Website: ["", Validators.required],
-      Source: ["", Validators.required],
-      PostedDate: ["", Validators.required],
-      ScrapeDate: ["", Validators.required]
+      City: ["", Validators.required]
     });
   }
 
-  addJob(
-    Title,
-    Company,
-    City,
-    Country,
-    Internship,
-    Fulltime,
-    Parttime,
-    Summary,
-    Email,
-    Website,
-    Source,
-    PostedDate,
-    ScrapeDate
-  ) {
-    this.ps.addJob(
-      Title,
-      Company,
-      City,
-      Country,
-      Internship,
-      Fulltime,
-      Parttime,
-      Summary,
-      Email,
-      Website,
-      Source,
-      PostedDate,
-      ScrapeDate
-    );
+  addJob(Title, Company, City) {
+    console.log(Title, Company, City);
+    this.ps.addJob(Title, Company, City);
+    alert("Succesfully added.");
+    this.angForm.reset();
   }
 
   ngOnInit() {}

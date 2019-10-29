@@ -1,24 +1,34 @@
 <div class="card">
   <div class="card-body">
-    <form>
+    <form [formGroup]="angForm" novalidate>
       <div class="form-group">
         <label class="col-md-4">Title</label>
-        <input type="text" class="form-control" />
+        <input
+          type="text"
+          class="form-control"
+          formControlName="Title"
+          #Title
+        />
       </div>
       <div class="form-group">
-        <label class="col-md-2">Company</label>
-        <input type="text" class="form-control" />
+        <label class="col-md-4">Company</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="Company"
+          #Company
+        />
       </div>
       <div class="form-group">
         <label class="col-md-4">City</label>
-        <input type="text" class="form-control" />
+        <input type="text" class="form-control" formControlName="City" #City />
       </div>
 
       <div class="form-group">
         <button
-          (click)="addProduct(Title.value, Company.value, city.value)"
-          type="submit"
-          class="btn btn-primary"
+          (click)="addJob(Title.value, Company.value, City.value)"
+          type="button"
+          class="btn btn-primary btn-block"
           [disabled]="angForm.pristine || angForm.invalid"
         >
           Post job

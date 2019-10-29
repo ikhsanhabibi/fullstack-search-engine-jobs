@@ -16,4 +16,16 @@ export class JobGetComponent implements OnInit {
       this.jobs = data;
     });
   }
+
+  deleteJob(id) {
+    this.ps.deleteJob(id).subscribe(res => {
+      this.jobs.splice(id, 1);
+    });
+  }
+
+  deleteJobs() {
+    this.ps.deleteJobs().subscribe(() => {
+      this.jobs.splice(0, this.jobs.length);
+    });
+  }
 }
