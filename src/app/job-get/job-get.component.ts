@@ -30,4 +30,28 @@ export class JobGetComponent implements OnInit {
       this.jobs.splice(0, this.jobs.length);
     });
   }
+
+  truncateText(summary, maxLength) {
+    if (summary.length > maxLength) {
+      summary = summary.substr(0, maxLength) + " ...";
+    }
+    return summary;
+  }
+  convertInternship(answer) {
+    if (answer == "Yes") {
+      return "Internship";
+    }
+  }
+
+  convertFulltime(answer) {
+    if (answer == "Yes") {
+      return "Full time";
+    }
+  }
+
+  convertParttime(answer) {
+    if (answer == "Yes") {
+      return "Part time";
+    }
+  }
 }
