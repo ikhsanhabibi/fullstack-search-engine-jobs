@@ -13,13 +13,15 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { JobsService } from "./jobs.service";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { JobSearchComponent } from "./job-search/job-search.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     JobAddComponent,
     JobGetComponent,
-    JobEditComponent
+    JobEditComponent,
+    JobSearchComponent
   ],
   imports: [
     BrowserModule,

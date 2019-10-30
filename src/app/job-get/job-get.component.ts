@@ -9,11 +9,13 @@ import { Job } from "../Job";
 })
 export class JobGetComponent implements OnInit {
   jobs: Job[];
+  jobsLength: number;
   constructor(private ps: JobsService) {}
 
   ngOnInit() {
     this.ps.getJobs().subscribe((data: Job[]) => {
       this.jobs = data;
+      this.jobsLength = this.jobs.length;
     });
   }
 
