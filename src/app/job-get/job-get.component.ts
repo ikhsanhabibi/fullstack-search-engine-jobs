@@ -16,6 +16,7 @@ export class JobGetComponent implements OnInit {
     this.ps.getJobs().subscribe((data: Job[]) => {
       this.jobs = data;
       this.jobsLength = data.length;
+      console.log(this.jobsLength);
     });
   }
 
