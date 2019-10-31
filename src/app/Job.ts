@@ -1,6 +1,7 @@
 export class Job {
   Title: String;
   Company: String;
+  City: String;
   Country: String;
   Internship: String;
   Fulltime: String;

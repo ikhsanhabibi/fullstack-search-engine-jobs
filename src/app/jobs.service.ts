@@ -19,7 +19,7 @@ export class JobsService {
     console.log(obj);
     this.http
       .post(`${this.uri}/add`, obj)
-      .subscribe(res => console.log("Done"));
+      .subscribe(res => console.log("Succesfully added"));
   }
 
   getJobs() {
@@ -27,7 +27,6 @@ export class JobsService {
   }
 
   deleteJob(id) {
-    console.log("delete coy");
     return this.http.get(`${this.uri}/delete/${id}`);
   }
 

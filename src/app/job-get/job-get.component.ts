@@ -15,25 +15,29 @@ export class JobGetComponent implements OnInit {
   ngOnInit() {
     this.ps.getJobs().subscribe((data: Job[]) => {
       this.jobs = data;
-      this.jobsLength = this.jobs.length;
+      this.jobsLength = data.length;
     });
   }
 
   deleteJob(id) {
     this.ps.deleteJob(id).subscribe(res => {
       this.jobs.splice(id, 1);
+      this.ngOnInit();
+      console.log("Deleted");
     });
   }
 
   deleteJobs() {
     this.ps.deleteJobs().subscribe(() => {
       this.jobs.splice(0, this.jobs.length);
+      this.ngOnInit();
+      console.log("All jobs deleted");
     });
   }
 
   truncateText(summary, maxLength) {
-    if (summary.length > maxLength) {
-      summary = summary.substr(0, maxLength) + " ...";
+    if (summary && summary.length > maxLength) {
+      summary = summary.substr(0, maxLength) + "...";
     }
     return summary;
   }

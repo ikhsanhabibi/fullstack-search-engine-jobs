@@ -1,14 +1,26 @@
-<div>
-  <button (click)="deleteJobs()" class="btn btn-danger btn-sm">
-    Delete {{ jobsLength }} Jobs
-  </button>
-</div>
 <br />
-<div class="card-group" *ngFor="let job of jobs">
+
+<div class="form-row">
+  <div class="col">
+    <input
+      matInput
+      [(ngModel)]="searchText"
+      placeholder="Enter jobs, company or city"
+      autocomplete="off"
+      type="text"
+      class="form-control"
+    />
+  </div>
+</div>
+
+<br />
+<br />
+
+<div class="card-group" *ngFor="let job of jobs | filter: searchText">
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">
-        <a href="{{ job.Website }}">{{ job.Title }}</a>
+        <a href="{{ job.Website }}">{{ job.Title }} | {{ job.Company }}</a>
       </h5>
       <p class="card-text">
         <span class="badge badge-primary">{{
