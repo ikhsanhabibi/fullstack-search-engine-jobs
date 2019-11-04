@@ -14,11 +14,9 @@ export class JobGetComponent implements OnInit {
 
   // array of all items to be paged
   items: Job[];
-
   // current page of items
   pageOfItems: Array<any>;
 
-  myForm: FormGroup;
   constructor(private ps: JobsService) { }
 
   ngOnInit() {
@@ -78,7 +76,5 @@ export class JobGetComponent implements OnInit {
     }
   }
 
-  reset() {
-    this.angForm.reset();
-  }
+
 }
