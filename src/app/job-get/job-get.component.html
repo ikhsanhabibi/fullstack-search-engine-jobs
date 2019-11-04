@@ -1,54 +1,44 @@
 <br />
 
-<div class="form-row">
-  <div class="col">
-    <input
-      matInput
-      [(ngModel)]="searchText"
-      placeholder="Enter jobs, company or city"
-      autocomplete="off"
-      type="text"
-      class="form-control"
-    />
-  </div>
+<div>
+  <input matInput [(ngModel)]="searchText" placeholder="Enter jobs, company or city" autocomplete="off" type="text"
+    class="form-control" />
 </div>
 
 <br />
-<br />
 
-<div class="card-group" *ngFor="let job of jobs | filter: searchText">
+<div class="card-group" *ngFor="let item of pageOfItems | filter: searchText">
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">
-        <a href="{{ job.Website }}">{{ job.Title }} | {{ job.Company }}</a>
+        <a href="{{ item.Website }}">{{ item.Title }} | {{ item.Company }}</a>
       </h5>
       <p class="card-text">
         <span class="badge badge-primary">{{
-          convertFulltime(job.Fulltime)
+          convertFulltime(item.Fulltime)
         }}</span>
         <span class="badge badge-success">{{
-          convertInternship(job.Internship)
+          convertInternship(item.Internship)
         }}</span>
         <span class="badge badge-warning">{{
-          convertParttime(job.Parttime)
+          convertParttime(item.Parttime)
         }}</span>
-        <small class="text-muted"> {{ job.City }} {{ job.Country }}</small>
+        <small class="text-muted"> {{ item.City }} {{ item.Country }}</small>
       </p>
       <p class="card-text">
-        {{ truncateText(job.Summary, 200) }}
+        {{ truncateText(item.Summary, 200) }}
       </p>
       <p class="card-text">
-        <small class="text-muted"
-          >Last updated: {{ job.ScrapeDate | date }} Source :
-          {{ job.Source }}</small
-        >
+        <small class="text-muted">Last updated: {{ item.ScrapeDate | date }} Source :
+          {{ item.Source }}</small>
       </p>
-      <button [routerLink]="['/edit', job._id]" class="btn btn-primary btn-sm">
+      <button [routerLink]="['/edit', item._id]" class="btn btn-primary btn-sm">
         Edit
       </button>
-      <button (click)="deleteJob(job._id)" class="btn btn-danger btn-sm">
+      <button (click)="deleteitem(item._id)" class="btn btn-danger btn-sm">
         Delete
       </button>
     </div>
   </div>
 </div>
+<jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>

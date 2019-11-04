@@ -3,33 +3,20 @@
     <img src="../assets/imi map.png" width="5%" />
     <div class="row w-100">
       <div class="col-2">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarTogglerDemo03"
-          aria-controls="navbarTogglerDemo03"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-          (click)="isShown = !isShown"
-        >
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation"
+          (click)="isShown = !isShown">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
 
+
       <div class="col-10">
-        <div
-          class="collapse justify-content-end navbar-collapse"
-          [ngClass]="{ show: isShown }"
-          id="navbarTogglerDemo03"
-        >
+        <div class="collapse justify-content-end navbar-collapse" [ngClass]="{ show: isShown }"
+          id="navbarTogglerDemo03">
           <ul class="navbar-nav">
             <li class="nav-item ">
-              <a
-                routerLink="job/create"
-                class="nav-link"
-                routerLinkActive="active"
-              >
+              <a routerLink="job/create" class="nav-link" routerLinkActive="active">
                 Post New Job
               </a>
             </li>
@@ -38,17 +25,14 @@
                 List of Jobs
               </a>
             </li>
-            <li class="nav-item">
-              <button (click)="deleteJobs()" class="btn btn-danger ">
-                Delete {{ jobsLength }} all jobs
-              </button>
-            </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
 </nav>
+
+
 
 <div class="container">
   <router-outlet></router-outlet>

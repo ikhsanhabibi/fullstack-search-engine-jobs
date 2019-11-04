@@ -16,13 +16,16 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { FilterPipe } from "./job.search.pipe";
 
+import { JwPaginationComponent } from 'jw-angular-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
     JobAddComponent,
     JobGetComponent,
     JobEditComponent,
-    FilterPipe
+    FilterPipe,
+    JwPaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -35,4 +38,4 @@ import { FilterPipe } from "./job.search.pipe";
   providers: [JobsService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

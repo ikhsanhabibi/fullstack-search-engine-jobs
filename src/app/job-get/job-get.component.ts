@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { JobsService } from "../jobs.service";
 import { Job } from "../Job";
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: "app-job-get",
@@ -10,14 +11,30 @@ import { Job } from "../Job";
 export class JobGetComponent implements OnInit {
   jobs: Job[];
   jobsLength: number;
-  constructor(private ps: JobsService) {}
+
+  // array of all items to be paged
+  items: Job[];
+
+  // current page of items
+  pageOfItems: Array<any>;
+
+  myForm: FormGroup;
+  constructor(private ps: JobsService) { }
 
   ngOnInit() {
     this.ps.getJobs().subscribe((data: Job[]) => {
       this.jobs = data;
       this.jobsLength = data.length;
       console.log(this.jobsLength);
-    });
+      // items = jobs
+      this.items = data
+    })
+
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
   }
 
   deleteJob(id) {
@@ -42,6 +59,7 @@ export class JobGetComponent implements OnInit {
     }
     return summary;
   }
+
   convertInternship(answer) {
     if (answer == "Yes") {
       return "Internship";
@@ -58,5 +76,9 @@ export class JobGetComponent implements OnInit {
     if (answer == "Yes") {
       return "Part time";
     }
+  }
+
+  reset() {
+    this.angForm.reset();
   }
 }
