@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { JobsService } from "../jobs.service";
-import { Job } from "../Job";
+import { JobsService } from "../_services/jobs.service";
+import { Job } from "../_models/Job";
 import { FormGroup } from '@angular/forms';
 
 @Component({

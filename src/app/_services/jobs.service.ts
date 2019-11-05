@@ -8,7 +8,7 @@ import { HttpClient } from "@angular/common/http";
 export class JobsService {
   uri = "http://localhost:4000/jobs";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   addJob(Title, Company, City) {
     const obj = {
@@ -32,6 +32,6 @@ export class JobsService {
 
   deleteJobs() {
     console.log("deleteJobs() method excuted");
-    return this.http.get(`${this.uri}/deleteAll`);
+    return this.http.get(`${this.uri}/deleteJobs`);
   }
 }

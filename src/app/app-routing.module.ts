@@ -18,11 +18,11 @@ const routes: Routes = [
     path: "jobs",
     component: JobGetComponent
   },
-  { path: "deleteAll", component: JobGetComponent }
+  { path: "deleteJobs", component: JobGetComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

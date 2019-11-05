@@ -11,10 +11,10 @@ import { SlimLoadingBarModule } from "ng2-slim-loading-bar";
 
 import { HttpClientModule } from "@angular/common/http";
 
-import { JobsService } from "./jobs.service";
+import { JobsService } from "./_services/jobs.service";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
-import { FilterPipe } from "./job.search.pipe";
+import { FilterPipe } from "./_pipe/job.search.pipe"; 
 
 import { JwPaginationComponent } from 'jw-angular-pagination';
 
