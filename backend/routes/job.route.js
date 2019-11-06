@@ -1,5 +1,4 @@
 // job.route.js
-
 const express = require("express");
 const app = express();
 const jobRoutes = express.Router();
@@ -8,7 +7,7 @@ const jobRoutes = express.Router();
 let Job = require("../models/Job");
 
 // Defined store route
-jobRoutes.route("/add").post(function(req, res) {
+jobRoutes.route("/add").post(function (req, res) {
   let job = new Job(req.body);
   job
     .save()
@@ -21,8 +20,8 @@ jobRoutes.route("/add").post(function(req, res) {
 });
 
 // Defined get data(index or listing) route
-jobRoutes.route("/").get(function(req, res) {
-  Job.find(function(err, jobs) {
+jobRoutes.route("/").get(function (req, res) {
+  Job.find(function (err, jobs) {
     if (err) {
       console.log(err);
     } else {
@@ -32,16 +31,16 @@ jobRoutes.route("/").get(function(req, res) {
 });
 
 // Defined edit route
-jobRoutes.route("/edit/:id").get(function(req, res) {
+jobRoutes.route("/edit/:id").get(function (req, res) {
   let id = req.params.id;
-  Job.findById(id, function(err, job) {
+  Job.findById(id, function (err, job) {
     res.json(job);
   });
 });
 
 //  Defined update route
-jobRoutes.route("/update/:id").post(function(req, res) {
-  Job.updateOne(req.params.id, function(err, job) {
+jobRoutes.route("/update/:id").post(function (req, res) {
+  Job.updateOne(req.params.id, function (err, job) {
     if (!job) res.status(404).send("Record not found");
     else {
       job.Title = req.body.Title;
@@ -71,8 +70,8 @@ jobRoutes.route("/update/:id").post(function(req, res) {
 });
 
 // Defined delete | remove | destroy route
-jobRoutes.route("/delete/:id").get(function(req, res) {
-  Job.deleteOne({ _id: req.params.id }, function(err, job) {
+jobRoutes.route("/delete/:id").get(function (req, res) {
+  Job.deleteOne({ _id: req.params.id }, function (err, job) {
     if (err) res.json(err);
     else {
       res.json("Successfully removed");
@@ -80,8 +79,8 @@ jobRoutes.route("/delete/:id").get(function(req, res) {
   });
 });
 
-jobRoutes.route("/deleteAll").get(function(req, res) {
-  Job.deleteMany({}, function(err, obj) {
+jobRoutes.route("/deleteAll").get(function (req, res) {
+  Job.deleteMany({}, function (err, obj) {
     if (err) res.json(err);
     else {
       res.json("Successfully removed");

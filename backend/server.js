@@ -3,6 +3,7 @@ const express = require("express"),
   path = require("path"),
   bodyParser = require("body-parser"),
   cors = require("cors"),
+  passport = require('passport'),
   mongoose = require("mongoose"),
   config = require("./config/DB");
 
@@ -31,8 +32,18 @@ app.use(bodyParser.json());
 // CORS Middleware
 app.use(cors());
 
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
 app.use("/jobs", jobRoute);
 app.use("/users", userRoute);
+
+app.get('/', (req, res, next) => {
+  res.send('Backend home');
+});
 
 // Port Number
 let port = process.env.PORT || 4000;
