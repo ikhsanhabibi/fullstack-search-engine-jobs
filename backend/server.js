@@ -4,19 +4,19 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   cors = require("cors"),
   mongoose = require("mongoose"),
-  config = require("./DB");
+  config = require("./config/DB");
 
+// routes.js
 const jobRoute = require("./routes/job.route");
 const userRoute = require("./routes/user.route");
 
 // Mongoose
-mongoose.Promise = global.Promise;
 mongoose.connect(config.DB, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 
-// On error & connected
+// On error & connected database
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function () {
@@ -24,6 +24,8 @@ db.once("open", function () {
 });
 
 const app = express();
+
+//Body Parser Middleware
 app.use(bodyParser.json());
 
 // CORS Middleware
