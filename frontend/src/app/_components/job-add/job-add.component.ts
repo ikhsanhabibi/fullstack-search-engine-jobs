@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { JobsService } from "../_services/jobs.service";
+import { JobsService } from "../../_services/jobs.service";
 
 @Component({
   selector: "app-job-add",
@@ -29,5 +29,5 @@ export class JobAddComponent implements OnInit {
     this.angForm.reset();
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 }

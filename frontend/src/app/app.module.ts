@@ -3,9 +3,9 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { JobAddComponent } from "./job-add/job-add.component";
-import { JobGetComponent } from "./job-get/job-get.component";
-import { JobEditComponent } from "./job-edit/job-edit.component";
+import { JobAddComponent } from "./_components/job-add/job-add.component";
+import { JobGetComponent } from "./_components/job-get/job-get.component";
+import { JobEditComponent } from "./_components/job-edit/job-edit.component";
 
 import { SlimLoadingBarModule } from "ng2-slim-loading-bar";
 
@@ -14,9 +14,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { JobsService } from "./_services/jobs.service";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
-import { FilterPipe } from "./_pipe/job.search.pipe"; 
+import { FilterPipe } from "./_pipe/job.search.pipe";
 
-import { JwPaginationComponent } from 'jw-angular-pagination';
+import { JwPaginationComponent } from "jw-angular-pagination";
 
 @NgModule({
   declarations: [
@@ -38,4 +38,4 @@ import { JwPaginationComponent } from 'jw-angular-pagination';
   providers: [JobsService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
