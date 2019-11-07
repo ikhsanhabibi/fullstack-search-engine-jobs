@@ -18,6 +18,13 @@ import { FilterPipe } from "./_pipe/job.search.pipe";
 
 import { JwPaginationComponent } from "jw-angular-pagination";
 
+import { HomeComponent } from "./_components/home/home.component";
+import { RegisterComponent } from "./_components/register/register.component";
+import { LoginComponent } from "./_components/login/login.component";
+import { DashboardComponent } from "./_components/dashboard/dashboard.component";
+import { ProfileComponent } from "./_components/profile/profile.component";
+import { NavbarComponent } from './_components/navbar/navbar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +32,13 @@ import { JwPaginationComponent } from "jw-angular-pagination";
     JobGetComponent,
     JobEditComponent,
     FilterPipe,
-    JwPaginationComponent
+    JwPaginationComponent,
+    HomeComponent,
+    RegisterComponent,
+    LoginComponent,
+    DashboardComponent,
+    ProfileComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
