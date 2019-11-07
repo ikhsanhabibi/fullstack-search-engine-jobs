@@ -1,0 +1,9 @@
+ReferenceError: Users is not defined
+- https://stackoverflow.com/questions/46076042/referenceerror-users-is-not-defined
+
+Error: Expected "payload" to be a plain object
+- https://github.com/bradtraversy/nodeauthapp/issues/3
+
+Passport authentication with JWTStrategy not working | Unathorized 401 JWT
+Change to: opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('JWT');
+- https://github.com/mikenicholson/passport-jwt/issues/153

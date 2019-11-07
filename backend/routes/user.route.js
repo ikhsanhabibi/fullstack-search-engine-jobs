@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
+const passport = require("passport");
 const jwt = require('jsonwebtoken');
 const config = require('../config/DB');
 
@@ -29,20 +29,22 @@ router.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
 
-
+    console.log("username: " + username)
     User.getUserByUsername(username, (err, user) => {
-        console.log(username)
+        console.log(user)
         if (err) throw err;
         if (!user) {
             return res.json({ success: false, msg: 'User not found' });
         }
-
+        console.log("user found")
         User.comparePassword(password, user.password, (err, isMatch) => {
             if (err) throw err;
+            console.log(isMatch)
             if (isMatch) {
                 const token = jwt.sign(user.toJSON(), config.secret, {
                     expiresIn: 604800 // 1 week
                 });
+                console.log(token)
 
                 res.json({
                     success: true,
@@ -54,6 +56,7 @@ router.post('/authenticate', (req, res, next) => {
                         email: user.email
                     }
                 });
+                console.log(res.statusCode)
             } else {
                 return res.json({ success: false, msg: 'Wrong password' });
             }
@@ -64,6 +67,7 @@ router.post('/authenticate', (req, res, next) => {
 // Profile
 router.get('/profile', passport.authenticate('jwt', { session: false }), (req, res, next) => {
     res.json({ user: req.user });
+
 });
 
 
