@@ -1,3 +1,11 @@
+Search Filter Pipe
+
+Search using pipe
+- https://medium.com/@ole.ersoy/searching-country-codes-using-an-angular-filter-pipe-a7115584db9f
+
+
+API Authorization
+
 ReferenceError: Users is not defined
 - https://stackoverflow.com/questions/46076042/referenceerror-users-is-not-defined
 
