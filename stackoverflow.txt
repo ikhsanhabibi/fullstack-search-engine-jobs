@@ -15,3 +15,6 @@ Error: Expected "payload" to be a plain object
 Passport authentication with JWTStrategy not working | Unathorized 401 JWT
 Change to: opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('JWT');
 - https://github.com/mikenicholson/passport-jwt/issues/153
+
+Navbar active route highlited
+- https://stackoverflow.com/questions/52593815/how-to-set-color-of-active-item-in-mat-nav-list-in-angular-6
