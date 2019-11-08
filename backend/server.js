@@ -3,7 +3,7 @@ const express = require("express"),
   path = require("path"),
   bodyParser = require("body-parser"),
   cors = require("cors"),
-  passport = require('passport'),
+  passport = require("passport"),
   mongoose = require("mongoose"),
   config = require("./config/DB");
 
@@ -20,7 +20,7 @@ mongoose.connect(config.DB, {
 // On error & connected database
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function () {
+db.once("open", function() {
   console.log("we're connected!");
 });
 
@@ -32,23 +32,36 @@ app.use(bodyParser.json());
 // CORS Middleware
 app.use(cors());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  if (req.method === "OPTION") {
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,PATCH");
+    return res.status(200).json({});
+  }
+  next();
+});
+
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 app.use("/jobs", jobRoute);
 app.use("/users", userRoute);
 
-app.get('/', (req, res, next) => {
-  res.send('Backend home');
+app.get("/", (req, res, next) => {
+  res.send("Backend home");
 });
 
 // Port Number
 let port = process.env.PORT || 4000;
 
 // Start Server
-const server = app.listen(port, function () {
+const server = app.listen(port, function() {
   console.log("Listening on port " + port + " 🚀");
 });

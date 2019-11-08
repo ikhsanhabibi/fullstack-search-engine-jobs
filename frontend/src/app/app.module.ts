@@ -23,7 +23,10 @@ import { RegisterComponent } from "./_components/register/register.component";
 import { LoginComponent } from "./_components/login/login.component";
 import { DashboardComponent } from "./_components/dashboard/dashboard.component";
 import { ProfileComponent } from "./_components/profile/profile.component";
-import { NavbarComponent } from './_components/navbar/navbar.component';
+import { NavbarComponent } from "./_components/navbar/navbar.component";
+
+import { AlertService } from "./_services/alert.service";
+import { UserService } from "./_services/user.service";
 
 @NgModule({
   declarations: [
@@ -48,7 +51,7 @@ import { NavbarComponent } from './_components/navbar/navbar.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [JobsService],
+  providers: [JobsService, AlertService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
