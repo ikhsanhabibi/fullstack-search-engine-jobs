@@ -14,7 +14,8 @@ const userRoute = require("./routes/user.route");
 // Mongoose
 mongoose.connect(config.DB, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
 
 // On error & connected database
@@ -28,6 +29,7 @@ const app = express();
 
 //Body Parser Middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // CORS Middleware
 app.use(cors());
@@ -37,6 +39,13 @@ app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
+  );
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "content-type");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
   );
   if (req.method === "OPTION") {
     res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,PATCH");

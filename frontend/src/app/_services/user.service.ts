@@ -27,9 +27,6 @@ export class UserService {
   }
 
   submitRegister(body: any) {
-    console.log("body");
-    console.log(body);
-
     let headers = {
       "Content-Type": "application/json"
     };
@@ -38,9 +35,8 @@ export class UserService {
       headers: headers
     };
 
-    console.log(JSON.stringify(body));
     this.http
-      .post(`${this.uri}/register`, JSON.stringify(body), options)
+      .post(`${this.uri}/users/register`, JSON.stringify(body), options)
       .subscribe(res => console.log("Succesfully added"));
   }
 }

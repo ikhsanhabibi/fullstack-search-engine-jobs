@@ -1,8 +1,14 @@
 <br />
 
 <div>
-  <input matInput [(ngModel)]="searchText" placeholder="Enter jobs, company or city" autocomplete="off" type="text"
-    class="form-control" />
+  <input
+    matInput
+    [(ngModel)]="searchText"
+    placeholder="Enter jobs, company or city"
+    autocomplete="off"
+    type="text"
+    class="form-control"
+  />
 </div>
 
 <br />
@@ -29,8 +35,10 @@
         {{ truncateText(item.Summary, 200) }}
       </p>
       <p class="card-text">
-        <small class="text-muted">Last updated: {{ item.ScrapeDate | date }} Source :
-          {{ item.Source }}</small>
+        <small class="text-muted"
+          >Last updated: {{ item.ScrapeDate | date }} Source :
+          {{ item.Source }}</small
+        >
       </p>
       <button [routerLink]="['/edit', item._id]" class="btn btn-primary btn-sm">
         Edit
@@ -41,4 +49,7 @@
     </div>
   </div>
 </div>
-<jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+<jw-pagination
+  [items]="items"
+  (changePage)="onChangePage($event)"
+></jw-pagination>

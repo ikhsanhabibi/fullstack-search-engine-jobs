@@ -4,15 +4,15 @@
     <form [formGroup]="angForm" novalidate>
       <div class="form-group">
         <label>Name</label>
-        <input type="text" class="form-control" formControlName="Name" #Name />
+        <input type="text" class="form-control" formControlName="name" #name />
       </div>
       <div class="form-group">
         <label>Username</label>
         <input
           type="text"
           class="form-control"
-          formControlName="Username"
-          #Username
+          formControlName="username"
+          #username
         />
       </div>
       <div class="form-group">
@@ -20,8 +20,8 @@
         <input
           type="text"
           class="form-control"
-          formControlName="Email"
-          #Email
+          formControlName="email"
+          #email
         />
       </div>
       <div class="form-group">
@@ -29,14 +29,14 @@
         <input
           type="password"
           class="form-control"
-          formControlName="Password"
-          #Password
+          formControlName="password"
+          #password
         />
       </div>
       <div class="form-group">
         <input
           (click)="
-            register(Name.value, Username.value, Email.value, Password.value)
+            register(name.value, username.value, email.value, password.value)
           "
           type="button"
           class="btn btn-primary"

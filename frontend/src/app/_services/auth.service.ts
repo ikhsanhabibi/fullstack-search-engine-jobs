@@ -5,16 +5,20 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: "root"
 })
 export class AuthService {
-  authToken: any;
-  user: any;
+  uri = "http://localhost:4000/users";
 
   constructor(private http: HttpClient) {}
 
-  registerUser(user) {
-    let headers = new HttpHeaders();
-    headers.append("Content-Type", "application/json");
-    return this.http
-      .post("http://localhost:4000/register", user, { headers: headers })
-      .subscribe(res => console.log("Succesfully authorized"));
+  register(name, username, email, password) {
+    const obj = {
+      name,
+      username,
+      email,
+      password
+    };
+
+    this.http
+      .post(`${this.uri}/register`, obj)
+      .subscribe(res => console.log("Succesfully registered"));
   }
 }
