@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "src/app/_services/user.service";
-import { AuthService } from "src/app/_services/auth.service";
+import { Router } from "@angular/router";
+
 import {
   FormGroup,
   FormBuilder,
@@ -18,25 +19,29 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private ps: UserService,
-    private authService: AuthService
+    private us: UserService,
+    private router: Router
   ) {
     this.angForm = new FormGroup({
       name: new FormControl("", Validators.required),
       username: new FormControl("", Validators.required),
-      email: new FormControl("", Validators.required),
-      password: new FormControl("", Validators.required)
+      email: new FormControl("", [
+        Validators.required,
+        Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+      ]),
+      password: new FormControl("", [
+        Validators.required,
+        Validators.minLength(6)
+      ])
     });
   }
 
   register(name, username, email, password) {
-    //this.ps.register(Name, Username, Email, Password);
-
-    //this.ps.submitRegister(this.angForm.value);
     console.log(name, username, email, password);
-    this.authService.register(name, username, email, password);
-
+    this.us.register(name, username, email, password);
     this.angForm.reset();
+    alert("Succesfully registered");
+    this.router.navigate(["/login"]);
   }
 
   ngOnInit(): void {}

@@ -40,7 +40,10 @@
           {{ item.Source }}</small
         >
       </p>
-      <button [routerLink]="['/edit', item._id]" class="btn btn-primary btn-sm">
+      <button
+        [routerLink]="['/jobs/edit', item._id]"
+        class="btn btn-primary btn-sm"
+      >
         Edit
       </button>
       <button (click)="deleteJob(item._id)" class="btn btn-danger btn-sm">

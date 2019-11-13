@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { JobsService } from "../../_services/jobs.service";
 import { Job } from "../../_models/Job";
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-job-get",
@@ -17,7 +17,10 @@ export class JobGetComponent implements OnInit {
   // current page of items
   pageOfItems: Array<any>;
 
-  constructor(private ps: JobsService) { }
+  angForm: FormGroup;
+  constructor(private fb: FormBuilder, private ps: JobsService) {
+    this.createForm();
+  }
 
   ngOnInit() {
     this.ps.getJobs().subscribe((data: Job[]) => {
@@ -25,9 +28,8 @@ export class JobGetComponent implements OnInit {
       this.jobsLength = data.length;
       console.log(this.jobsLength);
       // items = jobs
-      this.items = data
-    })
-
+      this.items = data;
+    });
   }
 
   onChangePage(pageOfItems: Array<any>) {
@@ -49,6 +51,21 @@ export class JobGetComponent implements OnInit {
       this.ngOnInit();
       console.log("All jobs deleted");
     });
+  }
+
+  createForm() {
+    this.angForm = this.fb.group({
+      Title: ["", Validators.required],
+      Company: ["", Validators.required],
+      City: ["", Validators.required]
+    });
+  }
+
+  addJob(Title, Company, City) {
+    console.log(Title, Company, City);
+    this.ps.addJob(Title, Company, City);
+    alert("Succesfully added.");
+    this.angForm.reset();
   }
 
   truncateText(summary, maxLength) {
@@ -75,6 +92,4 @@ export class JobGetComponent implements OnInit {
       return "Part time";
     }
   }
-
-
 }

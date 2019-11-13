@@ -27,7 +27,6 @@ import { NavbarComponent } from "./_components/navbar/navbar.component";
 
 import { AlertService } from "./_services/alert.service";
 import { UserService } from "./_services/user.service";
-import { AuthService } from "./_services/auth.service";
 
 @NgModule({
   declarations: [

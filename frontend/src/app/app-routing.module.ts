@@ -13,11 +13,11 @@ import { ProfileComponent } from "./_components/profile/profile.component";
 
 const routes: Routes = [
   {
-    path: "job/create",
+    path: "jobs/create",
     component: JobAddComponent
   },
   {
-    path: "edit/:id",
+    path: "jobs/edit/:id",
     component: JobEditComponent
   },
   {

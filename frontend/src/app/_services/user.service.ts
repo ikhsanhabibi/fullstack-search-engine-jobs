@@ -7,36 +7,40 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 })
 export class UserService {
   uri = "http://localhost:4000/users";
-  successMessage: String = "";
+
+  private token: String;
 
   constructor(private http: HttpClient) {}
 
-  register(Name, Username, Email, Password) {
-    const obj = {
-      Name,
-      Username,
-      Email,
-      Password
-    };
+  getToken() {
+    return this.token;
+  }
 
-    console.log("service register");
+  register(name, username, email, password) {
+    const obj = {
+      name,
+      username,
+      email,
+      password
+    };
 
     this.http
       .post(`${this.uri}/register`, obj)
       .subscribe(res => console.log("Succesfully registered"));
   }
 
-  submitRegister(body: any) {
-    let headers = {
-      "Content-Type": "application/json"
-    };
-
-    let options = {
-      headers: headers
+  login(email, password) {
+    const obj = {
+      email,
+      password
     };
 
     this.http
-      .post(`${this.uri}/users/register`, JSON.stringify(body), options)
-      .subscribe(res => console.log("Succesfully added"));
+      .post<{ token: String }>(`${this.uri}/login`, obj)
+      .subscribe(res => {
+        const token = res.token;
+        this.token = token;
+        console.log(token);
+      });
   }
 }

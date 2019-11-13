@@ -1,3 +1,7 @@
 .active-list-item {
   color: white !important; /* Note: You could also use a custom theme */
 }
+
+.pointer {
+  cursor: pointer;
+}

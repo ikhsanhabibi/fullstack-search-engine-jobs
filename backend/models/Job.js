@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Define collection and schema for Job
-let Job = new Schema(
+let JobSchema = new Schema(
   {
     Title: {
       type: String
@@ -48,4 +48,4 @@ let Job = new Schema(
   }
 );
 
-module.exports = mongoose.model("Job", Job);
+const Job = (module.exports = mongoose.model("Job", JobSchema));

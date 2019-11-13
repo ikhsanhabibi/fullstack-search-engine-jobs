@@ -21,3 +21,12 @@ Navbar active route highlited
 
 Why is request.body undefined? (reihenfolge ist falsch)
 https://stackoverflow.com/questions/51781432/why-is-request-body-undefined
+
+Email regex
+- https://stackoverflow.com/questions/49182864/angular-5-form-validation-e-mail
+
+Validator password
+- https://stackoverflow.com/questions/53719313/password-and-confirmpassword-validation-in-angular-using-reactive-forms
+
+Update one mongo
+- https://stackoverflow.com/questions/28376058/update-single-record-in-mongodb-using-express-and-node-js

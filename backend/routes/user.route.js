@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 const config = require("../config/DB");
 
 const bcrypt = require("bcryptjs");
+
+const checkAuth = require("../check-auth");
 // Require User model in our routes module
 let User = require("../models/User");
 
@@ -33,8 +35,45 @@ userRoutes.post("/register", (req, res, next) => {
   });
 });
 
+// Login
+userRoutes.post("/login", (req, res, next) => {
+  let fetchedUser;
+  User.findOne({ email: req.body.email })
+    .then(user => {
+      if (!user) {
+        return res.status(401).json({
+          message: "Auth failed"
+        });
+      }
+      fetchedUser = user;
+      return bcrypt.compare(req.body.password, user.password);
+    })
+    .then(result => {
+      if (!result) {
+        return res.status(401).json({
+          message: "Auth failed"
+        });
+      }
+
+      const token = jwt.sign(
+        { email: fetchedUser.email, userId: fetchedUser._id },
+        config.secret,
+        { expiresIn: "1h" }
+      );
+
+      res.status(200).json({
+        token: token
+      });
+    })
+    .catch(err => {
+      return res.status(401).json({
+        message: "Auth failed"
+      });
+    });
+});
+
 // Authenticate
-userRoutes.post("/authenticate", (req, res, next) => {
+/*userRoutes.post("/authenticate", (req, res, next) => {
   console.log("authenticate");
 
   const username = req.body.username;
@@ -52,17 +91,6 @@ userRoutes.post("/authenticate", (req, res, next) => {
         const token = jwt.sign(user.toJSON(), config.secret, {
           expiresIn: 604800 // 1 week
         });
-
-        res.json({
-          success: true,
-          token: "JWT " + token,
-          user: {
-            id: user._id,
-            name: user.name,
-            username: user.username,
-            email: user.email
-          }
-        });
       } else {
         return res.json({ success: false, msg: "Wrong password" });
       }
@@ -70,6 +98,7 @@ userRoutes.post("/authenticate", (req, res, next) => {
     });
   });
 });
+*/
 
 // Profile
 userRoutes.get(

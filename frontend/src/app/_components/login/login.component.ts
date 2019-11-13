@@ -14,16 +14,26 @@ import { UserService } from "src/app/_services/user.service";
 })
 export class LoginComponent implements OnInit {
   angForm: FormGroup;
-  constructor(private fb: FormBuilder, private ps: UserService) {
+  constructor(private fb: FormBuilder, private us: UserService) {
     this.angForm = new FormGroup({
-      Email: new FormControl("", Validators.required),
-      Password: new FormControl("", Validators.required)
+      email: new FormControl("", [
+        Validators.required,
+        Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$")
+      ]),
+      password: new FormControl("", [
+        Validators.required,
+        Validators.minLength(6)
+      ])
     });
   }
 
   ngOnInit() {}
 
-  login() {
-    console.log(this.angForm.value);
+  login(email, password) {
+    if (this.angForm.invalid) {
+      return;
+    }
+
+    this.us.login(email, password);
   }
 }
