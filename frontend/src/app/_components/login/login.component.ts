@@ -6,6 +6,7 @@ import {
   Validators
 } from "@angular/forms";
 import { UserService } from "src/app/_services/user.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -14,6 +15,8 @@ import { UserService } from "src/app/_services/user.service";
 })
 export class LoginComponent implements OnInit {
   angForm: FormGroup;
+  isLoading: Boolean = false;
+
   constructor(private fb: FormBuilder, private us: UserService) {
     this.angForm = new FormGroup({
       email: new FormControl("", [
@@ -33,7 +36,7 @@ export class LoginComponent implements OnInit {
     if (this.angForm.invalid) {
       return;
     }
-
+    this.isLoading = true;
     this.us.login(email, password);
   }
 }

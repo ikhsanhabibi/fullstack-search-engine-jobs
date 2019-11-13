@@ -9,7 +9,7 @@ import { JobEditComponent } from "./_components/job-edit/job-edit.component";
 
 import { SlimLoadingBarModule } from "ng2-slim-loading-bar";
 
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { JobsService } from "./_services/jobs.service";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
@@ -27,6 +27,7 @@ import { NavbarComponent } from "./_components/navbar/navbar.component";
 
 import { AlertService } from "./_services/alert.service";
 import { UserService } from "./_services/user.service";
+import { AuthInterceptor } from "./_services/auth-intercepter";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,12 @@ import { UserService } from "./_services/user.service";
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [JobsService, AlertService, UserService],
+  providers: [
+    JobsService,
+    AlertService,
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

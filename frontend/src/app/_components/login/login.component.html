@@ -1,5 +1,11 @@
 <section class="jumbotron">
-  <div class="container">
+  <div class="d-flex justify-content-center" *ngIf="isLoading">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div class="container" *ngIf="!isLoading">
     <h2 class="page-header">Login</h2>
     <form [formGroup]="angForm" novalidate>
       <div class="form-group">

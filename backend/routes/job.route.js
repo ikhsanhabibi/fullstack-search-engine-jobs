@@ -9,7 +9,7 @@ const checkAuth = require("../check-auth");
 let Job = require("../models/Job");
 
 // Defined store route
-jobRoutes.route("/add").post((req, res) => {
+jobRoutes.route("/add").post(checkAuth, (req, res) => {
   let job = new Job(req.body);
   job
     .save()
@@ -33,7 +33,7 @@ jobRoutes.route("/").get((req, res) => {
 });
 
 // Defined edit route
-jobRoutes.route("/edit/:id").get((req, res) => {
+jobRoutes.route("/edit/:id").get(checkAuth, (req, res) => {
   let id = req.params.id;
   Job.findById(id, function(err, job) {
     res.json(job);
@@ -41,7 +41,7 @@ jobRoutes.route("/edit/:id").get((req, res) => {
 });
 
 //  Defined update route
-jobRoutes.route("/update/:id").post((req, res) => {
+jobRoutes.route("/update/:id").post(checkAuth, (req, res) => {
   Job.updateOne({ _id: req.params.id }, req.body, function(err, result) {
     res.send(
       err === null ? { msg: "Update complete", job: req.body } : { msg: err }
@@ -50,7 +50,7 @@ jobRoutes.route("/update/:id").post((req, res) => {
 });
 
 // Defined delete | remove | destroy route
-jobRoutes.route("/delete/:id").get((req, res) => {
+jobRoutes.route("/delete/:id").get(checkAuth, (req, res) => {
   Job.deleteOne({ _id: req.params.id }, function(err, job) {
     if (err) res.json(err);
     else {

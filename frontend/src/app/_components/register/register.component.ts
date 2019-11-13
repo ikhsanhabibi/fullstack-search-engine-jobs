@@ -16,6 +16,7 @@ import {
 })
 export class RegisterComponent implements OnInit {
   angForm: FormGroup;
+  isLoading: Boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -37,11 +38,8 @@ export class RegisterComponent implements OnInit {
   }
 
   register(name, username, email, password) {
-    console.log(name, username, email, password);
+    this.isLoading = true;
     this.us.register(name, username, email, password);
-    this.angForm.reset();
-    alert("Succesfully registered");
-    this.router.navigate(["/login"]);
   }
 
   ngOnInit(): void {}
