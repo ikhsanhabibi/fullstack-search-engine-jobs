@@ -16,6 +16,10 @@ export class UserService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  getIsAuth() {
+    return this.isAuthenticated;
+  }
+
   getToken() {
     return this.token;
   }

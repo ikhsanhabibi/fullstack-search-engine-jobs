@@ -28,5 +28,10 @@ Email regex
 Validator password
 - https://stackoverflow.com/questions/53719313/password-and-confirmpassword-validation-in-angular-using-reactive-forms
 
-Update one mongo
+Update one record mongo
 - https://stackoverflow.com/questions/28376058/update-single-record-in-mongodb-using-express-and-node-js
+
+Decorator problem TS in VSCode
+- https://stackoverflow.com/questions/38271273/experimental-decorators-warning-in-typescript-compilation
+
+Message : course eps 16
