@@ -30,7 +30,7 @@ userRoutes.post("/register", (req, res, next) => {
           .json({ message: "User has been added successfully", user: user });
       })
       .catch(err => {
-        res.status(500).json({ error: err });
+        res.status(500).json({ message: "Failed to register", error: err });
       });
   });
 });

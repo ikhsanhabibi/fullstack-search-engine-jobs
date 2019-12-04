@@ -36,10 +36,15 @@ export class UserService {
       password
     };
 
-    this.http.post(`${this.uri}/register`, obj).subscribe(res => {
-      console.log("Succesfully registered");
-      this.router.navigate(["/login"]);
-    });
+    this.http.post(`${this.uri}/register`, obj).subscribe(
+      res => {
+        console.log("Succesfully registered");
+        this.router.navigate(["/login"]);
+      },
+      error => {
+        this.authStatusListener.next(false);
+      }
+    );
   }
 
   login(email, password) {
@@ -48,9 +53,8 @@ export class UserService {
       password
     };
 
-    this.http
-      .post<{ token: String }>(`${this.uri}/login`, obj)
-      .subscribe(res => {
+    this.http.post<{ token: String }>(`${this.uri}/login`, obj).subscribe(
+      res => {
         console.log(res);
         const token = res.token;
         this.token = token;
@@ -58,7 +62,11 @@ export class UserService {
         this.router.navigate(["/dashboard"]).then(() => {
           alert("Login succesful.");
         });
-      });
+      },
+      error => {
+        this.authStatusListener.next(false);
+      }
+    );
   }
 
   logout() {

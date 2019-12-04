@@ -16,6 +16,7 @@ import { Router } from "@angular/router";
 export class LoginComponent implements OnInit {
   angForm: FormGroup;
   isLoading: Boolean = false;
+  private authStatusSub: Subscription;
 
   constructor(private fb: FormBuilder, private us: UserService) {
     this.angForm = new FormGroup({
@@ -30,7 +31,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.authStatusSub = this.us
+      .getAuthStatusListener()
+      .subscribe(authStatus => {
+        this.isLoading = false;
+      });
+  }
 
   login(email, password) {
     if (this.angForm.invalid) {
@@ -38,5 +45,9 @@ export class LoginComponent implements OnInit {
     }
     this.isLoading = true;
     this.us.login(email, password);
+  }
+
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
   }
 }

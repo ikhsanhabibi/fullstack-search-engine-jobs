@@ -17,6 +17,7 @@ import {
 export class RegisterComponent implements OnInit {
   angForm: FormGroup;
   isLoading: Boolean = false;
+  private authStatusSub: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -42,5 +43,15 @@ export class RegisterComponent implements OnInit {
     this.us.register(name, username, email, password);
   }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.authStatusSub = this.us
+      .getAuthStatusListener()
+      .subscribe(authStatus => {
+        this.isLoading = false;
+      });
+  }
+
+  ngOnDestroy() {
+    this.authStatusSub.unsubscribe();
+  }
 }

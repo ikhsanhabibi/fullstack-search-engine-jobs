@@ -28,6 +28,7 @@ import { NavbarComponent } from "./_components/navbar/navbar.component";
 import { AlertService } from "./_services/alert.service";
 import { UserService } from "./_services/user.service";
 import { AuthInterceptor } from "./_services/auth-intercepter";
+import { ErrorInterceptor } from "./_services/error-intercepter";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AuthInterceptor } from "./_services/auth-intercepter";
     JobsService,
     AlertService,
     UserService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
