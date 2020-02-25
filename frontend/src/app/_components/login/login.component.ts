@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 
   login(email, password) {
     if (this.angForm.invalid) {
-      return;
+      return
     }
     this.isLoading = true;
     this.us.login(email, password);

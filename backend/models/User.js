@@ -23,6 +23,10 @@ let UserSchema = new Schema(
       type: String,
       minlength: 6,
       bcrypt: true
+    },
+    admin: {
+      type: Boolean,
+      default: false
     }
   },
   {

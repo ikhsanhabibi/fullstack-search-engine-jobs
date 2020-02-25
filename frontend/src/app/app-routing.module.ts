@@ -11,6 +11,8 @@ import { LoginComponent } from "./_components/login/login.component";
 import { DashboardComponent } from "./_components/dashboard/dashboard.component";
 import { ProfileComponent } from "./_components/profile/profile.component";
 
+import { AuthGuard } from "./../app/_services/auth.guard"
+
 const routes: Routes = [
   {
     path: "jobs/create",
@@ -24,16 +26,17 @@ const routes: Routes = [
     path: "jobs",
     component: JobGetComponent
   },
-  { path: "deleteJobs", component: JobGetComponent },
+  { path: "deleteJobs", component: JobGetComponent, canActivate:[AuthGuard]},
   { path: "", component: HomeComponent },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
-  { path: "dashboard", component: DashboardComponent },
-  { path: "profile", component: ProfileComponent }
+  { path: "dashboard", component: DashboardComponent},
+  { path: "profile", component: ProfileComponent, canActivate:[AuthGuard]}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule {}

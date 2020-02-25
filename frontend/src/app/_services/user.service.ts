@@ -13,6 +13,7 @@ export class UserService {
   private token: String;
   private authStatusListener = new Subject<boolean>();
   private isAuthenticated = false;
+  private isAdmin = false;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -64,6 +65,7 @@ export class UserService {
         });
       },
       error => {
+        alert("Incorrect data!")
         this.authStatusListener.next(false);
       }
     );
